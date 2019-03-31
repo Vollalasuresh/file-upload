@@ -43,6 +43,5 @@ app.use(passport.session());
 app.use(require('./controllers/index'));
 app.use(require('./controllers/user'));
 
-app.listen(5000,()=>console.log("Server is Running at port 5000"));
 
 module.exports= app
