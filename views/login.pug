@@ -1,0 +1,14 @@
+extends base
+block content
+    link(rel="stylesheet", href="index.css" type='text/css')
+    h2 Welcome To Login Page
+    h2 #{login_err}
+    h2 #{password_err}
+    form(action="/login", method="POST" class='login')
+        label UserName:
+        input(type="text" name='username' autocomplete="off")
+        label Password:
+        input(type="password", name="password" autocomplete="off")
+        input(type="submit", value="submit")
+
+        

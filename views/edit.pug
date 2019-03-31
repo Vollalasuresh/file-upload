@@ -1,0 +1,21 @@
+extends base
+block content
+    link(rel="stylesheet", href="index.css" type='text/css')
+    a(href="logout" class='logout') Logout
+    a(href="editprofile" class='edit') Edit Profile
+    a(href="uploadfile" class='upload') Upload File
+    form(action="editprofile", method="post")
+      lable Name:
+      input(type="text" name='name'  value= u.name autocomplete='off')
+      lable User Name:
+      input(type="text" name='username'  value= u.username autocomplete='off')
+      lable Password:
+      input(type="password" name="password"  value= u.password autocomplete="off")
+      lable Phone No:
+      input(type="number" name='phoneno'  value =u.phoneno autocomplete='off')
+      input(type="submit", value="Submit")
+
+    
+    
+
+    
