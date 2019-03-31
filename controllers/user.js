@@ -66,7 +66,7 @@ router.get('/uploadfile',isLoggedIn,(req,res)=>{
 })
 
 router.post('/uploadfile',isLoggedIn,(req,res)=>{
-    
+    res.send("uploaded")
 })
 
 module.exports = router;
