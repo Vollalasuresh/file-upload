@@ -2,7 +2,34 @@ const express = require("express");
 const router = express.Router();
 const passport = require('passport');
 var User = require('../models/user');
+var up= require('../models/uploads')
 
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage')
+
+//I used an mlab Sandbox DB. Substitute the details with your own
+const url = process.env.DBURI
+
+let storage = new GridFsStorage({
+  url: url,
+  file: (req, file) => {
+    return {
+      bucketName: 'upload',       //Setting collection name, default name is fs
+      filename: file.originalname     //Setting file name to original name of file
+    }
+  }
+});
+console.log("from storage",storage)
+let upload = null;
+
+storage.on('connection', (db) => {
+  //Setting up upload for a single file
+  
+});
+upload = multer({
+    storage: storage
+  });
+  
 const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
@@ -34,6 +61,7 @@ router.post('/login', passport.authenticate('local.login', {
 }))
 
 router.get('/show', isLoggedIn, (req, res) => {
+   
     res.render('show', { u:req.user });
 
 })
@@ -65,8 +93,9 @@ router.get('/uploadfile',isLoggedIn,(req,res)=>{
     res.render('upload')
 })
 
-router.post('/uploadfile',isLoggedIn,(req,res)=>{
-    res.send("uploaded")
+router.post('/uploadfile',isLoggedIn,upload.single('file'),(req,res)=>{
+   var file= req.file
+   res.redirect('/show')
 })
 
 module.exports = router;

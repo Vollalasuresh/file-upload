@@ -4,7 +4,7 @@ block content
     a(href="logout" class='logout') Logout
     a(href="editprofile" class='edit') Edit Profile
     a(href="uploadfile" class='upload') Upload File
-    form(action="uploadfile", method="post")
+    form(action="uploadfile",enctype="multipart/form-data" method="post")
       lable File:
       input(type="file" name='file'   autocomplete='off')
       input(type="submit", value="Uploadfile")
